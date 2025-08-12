@@ -1,4 +1,4 @@
-package co.analisys.biblioteca;
+package co.analisys.gimnasio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
