@@ -1,10 +1,10 @@
-package co.analisys.biblioteca;
+package co.analisys.gimnasio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UsuarioServiceApplicationTests {
+class MiembroServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
