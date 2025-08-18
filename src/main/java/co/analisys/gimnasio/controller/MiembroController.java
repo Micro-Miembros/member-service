@@ -24,4 +24,9 @@ public class MiembroController {
         return miembroService.obtenerTodosMiembros();
     }
 
+    @GetMapping("/miembros/{id}/activa")
+    public boolean verificarMembresiaActiva(@PathVariable Long id) {
+        return miembroService.membresiaActiva(id);
+    }
+
 }
