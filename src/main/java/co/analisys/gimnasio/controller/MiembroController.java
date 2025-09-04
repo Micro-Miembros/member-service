@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class MiembroController {
     })
     @Operation(summary = "Registrar nuevo miembro", description = "Permite registrar un nuevo miembro en el gimnasio")
     @PostMapping("/miembros")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Miembro registrarMiembro(@RequestBody Miembro miembro) {
         return miembroService.registrarMiembro(miembro);
     }
@@ -39,6 +41,7 @@ public class MiembroController {
     })
     @Operation(summary = "Obtener todos los miembros", description = "Permite obtener la lista de todos los miembros del gimnasio")
     @GetMapping("/miembros")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER', 'ROLE_MEMBER')")
     public List<Miembro> obtenerTodosMiembros() {
         return miembroService.obtenerTodosMiembros();
     }
@@ -52,6 +55,7 @@ public class MiembroController {
     })
     @Operation(summary = "Verificar membresía activa", description = "Permite verificar si un miembro tiene una membresía activa (true/false)")
     @GetMapping("/miembros/{id}/activa")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public boolean verificarMembresiaActiva(@PathVariable Long id) {
         return miembroService.membresiaActiva(id);
     }
