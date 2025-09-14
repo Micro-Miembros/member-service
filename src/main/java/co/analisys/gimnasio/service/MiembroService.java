@@ -13,9 +13,16 @@ import java.util.List;
 public class MiembroService {
     @Autowired
     private MiembroRepository miembroRepository;
+    
+    @Autowired
+    private NotificationService notificationService;
 
     public Miembro registrarMiembro(Miembro miembro) {
-        return miembroRepository.save(miembro);
+        Miembro miembroRegistrado = miembroRepository.save(miembro);
+        
+        notificationService.enviarNotificacionRegistroMiembro(miembroRegistrado);
+        
+        return miembroRegistrado;
     }
     
     public boolean membresiaActiva(Long id) {
