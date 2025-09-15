@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
@@ -18,4 +19,7 @@ public class Miembro {
 
     @Embedded
     private Membresia membresia;
+    
+    @Transient
+    private Boolean simularFalloPago = false;
 }
